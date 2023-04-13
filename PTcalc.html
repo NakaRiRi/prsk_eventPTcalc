@@ -133,7 +133,7 @@
     <form method="GET">
         <label for="each"><b>單場PT：</b></label><br>
         <input type="text" id="each" name="each"><br>
-        <label for="each"><b>輸入單場PT的那場消費多少體力：</b></label><br>
+        <label for="livebonus"><b>輸入單場PT的那場消費多少體力：</b></label><br>
         <input type="text" id="livebonus" name="livebonus"><br>
         <label for="current"><b>目前分數：</b></label><br>
         <input type="text" id="current" name="current"><br>
@@ -141,16 +141,6 @@
         <input type="text" id="goal" name="goal"><br>
 
         選曲以計算所需時長<br>
-        <!-- <form>
-        勾選選曲以計算所需時長（可不選）<br>
-        <input type="radio" value="ebi" name="song"> 蝦/捉迷藏/えび<br>
-        <input type="radio" value="face" name="song"> 大臉/ロスエン<br>
-        </form> -->
-
-        <!-- <div id="radio">
-            <label><input type="radio" name="song" value="others" checked="checked"><span class="round button">台劇</span></label>
-            <label><input type="radio" name="song" value="ebi"><span class="round button">古裝劇</span></label>
-            <label><input type="radio" name="song" value="face"><span class="round button">陸劇</span></label> -->
 
         <div id="radio">
             <label><input type="radio" name="song" value="ebi"><span class="round button">蝦/捉迷藏/えび</span></label>
@@ -176,19 +166,39 @@
     <span>共需花費<span id="output2"></span>體，以及<span id="output3"></span>分鐘</span>
 
     <script>
+        // function min_to_hour(form){
+        //     const 
+
+        // }
+
         function calc(form) {
             const each = form.each.value;
+            const livebonus = form.livebonus.value;
             const goal = form.goal.value;
             const current = form.current.value;
 
             var distance = goal - current;
             var game_count = distance / each;
-            var time = game_count * 2.5;
-            var boost_count = game_count * 3;
+
+            var z = 0
+
+        // function check() {
+        //     document.getElementById("red").checked = true;
+        // }
+
+            if (document.getElementsByName("song")[0].checked == true){
+                z = 2
+            }
+            if (document.getElementsByName("song")[1].checked == true){
+                z = 2.7
+            }
+
+            var time = game_count * z;
+            var boost_count = game_count * livebonus;
 
             document.getElementById('output1').innerHTML = game_count;
             document.getElementById('output2').innerHTML = boost_count;
-            document.getElementById('output3').innerHTML = time;
+            document.getElementById('output3').innerHTML = (time < 60)?(time):(Math.floor(time / 60) + "小時" + time % 60);
 
         }
        // calc();
