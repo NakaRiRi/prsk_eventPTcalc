@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT 計算機</title>
+</head>
+<body background="https://pjsekai.sega.jp/assets/images/special/download/virtual-bg/virtual_bg_01_unit01.png">
+
+    <H2 align="left">「到底追不追得上！？」プロセカ活動PT計算機</H2>
+
+    <!-- span：讓背景色只顯示文字長度 -->
+    <H3 align="left"><span style="background-color:#39C5BB;">使用說明：</span></H3>
+
+    <ul type="disc">
+        <p><li>歡迎各位豆腐使用本計算機作為初估是否要追上去的參考</li></p>
+        <p><li>打排有風險，請謹慎考慮自身時間、精力與鈔能力</li></p>
+        <p><li>若有任何疑問請洽<a href="https://www.plurk.com/yumisky0226">阿千</a></li></p>
+    </ul>
+
+    <hr size="5px" align="left" width="50%" color="#ff72b8">
+
+    <H3 align="left"><span style="background-color:#39C5BB;">不同體力數的單場PT換算</span></H3>
+    
+    <ul type="disc">
+        <p><li>若已知PT數使用的體力數與下面欲計算的體力數不同，則可使用此換算先行計算</li></p>
+        <p><li>例如：我知道我花3（X）體打出的PT數，但我接下來想開5（Y）體跑</li></p>
+        <p><li>上述X與Y若不相等，可先使用此換算</li></p>
+    </ul>
+
+    <form method="GET">
+        <label for="each1"><b>已知的單場PT：</b></label><br>
+        <input type="text" id="each1" name="each1"><br>
+        <label for="curlivebo"><b>已知消費的體力數：</b></label><br>
+        <input type="text" id="curlivebo" name="curlivebo"><br>
+        <label for="livebo"><b>預計消費多少體力：</b></label><br>
+        <input type="text" id="livebo" name="livebo"><br>
+
+        <input type="button" name="round button" value="換算" onClick="change(this.form)">
+
+    </form>
+
+    <br>
+    <span>換算後的單場PT數為<span id="output4"></span></span>
+
+    <script>
+        function change(form) {
+            const each1 = form.each1.value;
+            const curlivebo = form.curlivebo.value;
+            const livebo = form.livebo.value;
+
+            var x = 0;
+            var y = 0;
+
+            if (curlivebo == 1){
+                x = 5
+            }
+            if (curlivebo == 2){
+                x = 10
+            }
+            if (curlivebo == 3){
+                x = 15
+            }
+            if (curlivebo == 4){
+                x = 19
+            }
+            if (curlivebo == 5){
+                x = 23
+            }
+            if (curlivebo == 6){
+                x = 26
+            }
+            if (curlivebo == 7){
+                x = 29
+            }
+            if (curlivebo == 8){
+                x = 31
+            }
+            if (curlivebo == 9){
+                x = 33
+            }
+            if (curlivebo == 10){
+                x = 35
+            }
+
+// 分隔，以上為目前體力，以下為預計體力
+
+            if (livebo == 1){
+                y = 5
+            }
+            if (livebo == 2){
+                y = 10
+            }
+            if (livebo == 3){
+                y = 15
+            }
+            if (livebo == 4){
+                y = 19
+            }
+            if (livebo == 5){
+                y = 23
+            }
+            if (livebo == 6){
+                y = 26
+            }
+            if (livebo == 7){
+                y = 29
+            }
+            if (livebo == 8){
+                y = 31
+            }
+            if (livebo == 9){
+                y = 33
+            }
+            if (livebo == 10){
+                y = 35
+            }
+
+            var changept = each1 * y / x;
+
+            document.getElementById('output4').innerHTML = changept;
+
+        }
+       // change();
+    </script>
+
+
+    <hr size="5px" align="left" width="50%" color="#ff72b8">
+
+    <H3 align="left"><span style="background-color:#39C5BB;">追分估計</span></H3>
+
+    <form method="GET">
+        <label for="each"><b>單場PT：</b></label><br>
+        <input type="text" id="each" name="each"><br>
+        <label for="each"><b>輸入單場PT的那場消費多少體力：</b></label><br>
+        <input type="text" id="livebonus" name="livebonus"><br>
+        <label for="current"><b>目前分數：</b></label><br>
+        <input type="text" id="current" name="current"><br>
+        <label for="goal"><b>目標分數：</b></label><br>
+        <input type="text" id="goal" name="goal"><br>
+
+        選曲以計算所需時長<br>
+        <!-- <form>
+        勾選選曲以計算所需時長（可不選）<br>
+        <input type="radio" value="ebi" name="song"> 蝦/捉迷藏/えび<br>
+        <input type="radio" value="face" name="song"> 大臉/ロスエン<br>
+        </form> -->
+
+        <!-- <div id="radio">
+            <label><input type="radio" name="song" value="others" checked="checked"><span class="round button">台劇</span></label>
+            <label><input type="radio" name="song" value="ebi"><span class="round button">古裝劇</span></label>
+            <label><input type="radio" name="song" value="face"><span class="round button">陸劇</span></label> -->
+
+        <div id="radio">
+            <label><input type="radio" name="song" value="ebi"><span class="round button">蝦/捉迷藏/えび</span></label>
+            <label><input type="radio" name="song" value="face"><span class="round button">大臉/ロスエン</span></label>       
+            <label><input type="radio" name="song" value="others"><span class="round button">其他</span></label>
+        </div>
+        
+        <style>
+        #radio input[type="radio"] {display: none; }
+        #radio input:checked + .button {background: #444467; color: #fff; cursor: default; }
+        #radio .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+        #radio .button:hover {background: #bbb; color: #fff; }
+        #radio .round {border-radius: 5px; }
+        </style>
+
+        <input type="button" name="round button" value="確定" onClick="calc(this.form)">
+        
+      </form>
+      
+    <br>
+    <span>您只需再打<span id="output1"></span>場，就可追到目標分數</span>
+    <br>
+    <span>共需花費<span id="output2"></span>體，以及<span id="output3"></span>分鐘</span>
+
+    <script>
+        function calc(form) {
+            const each = form.each.value;
+            const goal = form.goal.value;
+            const current = form.current.value;
+
+            var distance = goal - current;
+            var game_count = distance / each;
+            var time = game_count * 2.5;
+            var boost_count = game_count * 3;
+
+            document.getElementById('output1').innerHTML = game_count;
+            document.getElementById('output2').innerHTML = boost_count;
+            document.getElementById('output3').innerHTML = time;
+
+        }
+       // calc();
+    </script>
+
+    
+</body>
+
+
+</html>
