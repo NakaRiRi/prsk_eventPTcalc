@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PT 計算機</title>
 </head>
-<body background="https://pjsekai.sega.jp/assets/images/special/download/virtual-bg/virtual_bg_01_unit01.png">
+<body background="https://pjsekai.sega.jp/assets/images/special/download/virtual-bg/virtual_bg_01_unit01.png" style="background-attachment: fixed;">
 
     <H2 align="left">「到底追不追得上！？」プロセカ活動PT計算機</H2>
 
     <!-- span：讓背景色只顯示文字長度 -->
-    <H3 align="left"><span style="background-color:#39C5BB;">使用說明：</span></H3>
+    <H3 align="left"><span style="background-color:#00ffdd;">使用說明</span></H3>
 
     <ul type="disc">
         <p><li>歡迎各位豆腐使用本計算機作為初估是否要追上去的參考</li></p>
         <p><li>打排有風險，請謹慎考慮自身時間、精力與鈔能力</li></p>
+        <p><li>體力數輸入範圍皆為「1～10」</li>
         <p><li>若有任何疑問請洽<a href="https://www.plurk.com/yumisky0226">阿千</a></li></p>
+        <p><li>大力感謝<a href="https://www.plurk.com/Ado_wao">肉魚</a>以及<a href="https://www.plurk.com/geniusrobot6174">小龜</a>支援各種技術疑難雜症QQ</li>
     </ul>
 
     <hr size="5px" align="left" width="50%" color="#ff72b8">
 
-    <H3 align="left"><span style="background-color:#39C5BB;">不同體力數的單場PT換算</span></H3>
+    <H3 align="left"><span style="background-color:#00ffdd;">不同體力數的單場PT換算</span></H3>
     
     <ul type="disc">
         <p><li>若已知PT數使用的體力數與下面欲計算的體力數不同，則可使用此換算先行計算</li></p>
@@ -30,19 +32,37 @@
     </ul>
 
     <form method="GET">
+        
         <label for="each1"><b>已知的單場PT：</b></label><br>
         <input type="text" id="each1" name="each1"><br>
-        <label for="curlivebo"><b>已知消費的體力數：</b></label><br>
-        <input type="text" id="curlivebo" name="curlivebo"><br>
-        <label for="livebo"><b>預計消費多少體力：</b></label><br>
-        <input type="text" id="livebo" name="livebo"><br>
 
-        <input type="button" name="round button" value="換算" onClick="change(this.form)">
+        <label for="curlivebo"><b>已知消費的體力數（X）：</b></label><br>
+        <input type="range" id="curlivebo" name="curlivebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo1').innerHTML=this.value"><span id="showlivebo1">3</span><br>
+        
+        <label for="livebo"><b>換算成消費多少體力（Y）：</b></label><br>
+        <input type="range" id="livebo" name="livebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo2').innerHTML=this.value"><span id="showlivebo2">3</span><br>
+
+        <style>
+            #confirm2 {background-color: #fff795 ; min-height: 4px; min-width: 14px; padding: 5px; border-radius: 100px; cursor: pointer; font-size:15px; font-weight: bold;}
+            #confirm2:hover {background-color: #444467; color: #fff; }
+        </style>
+
+        <br>
+        <input type="button" name="round button" value="換算" id="confirm2"
+        onClick="change(this.form)">
+       
+        <!-- <style>
+            #button input[type="button"] {display: none; }
+            #button input:checked + .button {background: #444467; color: #fff; cursor: default; }
+            #button .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+            #button .button:hover {background: #bbb; color: #fff; }
+            #button .round {border-radius: 5px; }
+        </style> -->
 
     </form>
 
     <br>
-    <span>換算後的單場PT數為<span id="output4"></span></span>
+    <span><b><span style="background-color:#d5dce4;">換算後的單場PT數為<span id="output4"></span></b></span></span>
 
     <script>
         function change(form) {
@@ -128,19 +148,28 @@
 
     <hr size="5px" align="left" width="50%" color="#ff72b8">
 
-    <H3 align="left"><span style="background-color:#39C5BB;">追分估計</span></H3>
+    <H3 align="left"><span style="background-color:#00ffdd;">追分估計</span></H3>
+
+    <ul type="disc">
+        <p><li>將上面換算好的PT數填入第一個空格</li></p>
+        <p><li>可利用算出的體力數與時長評估自己是否要追分/每場花更多體/換曲</li></p>
+        <p><li>祝打排順利(≧∀≦)ゞ</li></p>
+    </ul>
 
     <form method="GET">
         <label for="each"><b>單場PT：</b></label><br>
         <input type="text" id="each" name="each"><br>
+        
         <label for="livebonus"><b>輸入單場PT的那場消費多少體力：</b></label><br>
-        <input type="text" id="livebonus" name="livebonus"><br>
+        <input type="range" id="livebonus" name="livebonus" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo').innerHTML=this.value"><span id="showlivebo">3</span><br>
+        
         <label for="current"><b>目前分數：</b></label><br>
         <input type="text" id="current" name="current"><br>
+        
         <label for="goal"><b>目標分數：</b></label><br>
         <input type="text" id="goal" name="goal"><br>
 
-        選曲以計算所需時長<br>
+        <b>選曲以計算所需時長：</b><br>
 
         <div id="radio">
             <label><input type="radio" name="song" value="ebi"><span class="round button">蝦/捉迷藏/えび</span></label>
@@ -153,17 +182,26 @@
         #radio input:checked + .button {background: #444467; color: #fff; cursor: default; }
         #radio .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
         #radio .button:hover {background: #bbb; color: #fff; }
-        #radio .round {border-radius: 5px; }
+        #radio .round {border-radius: 100px; }
+        #confirm {background-color: #fff795 ; min-height: 4px; min-width: 14px; padding: 5px; border-radius: 100px; cursor: pointer; font-size:15px; font-weight: bold;}
+        #confirm:hover {background-color: #444467; color: #fff; }
         </style>
 
-        <input type="button" name="round button" value="確定" onClick="calc(this.form)">
+        <label for="othertime"><b>或自行輸入時長（分鐘為單位）：</b></label><br>
+        <input type="text" id="othertime" name="othertime"><br>        
+
+        <br>
+        <input type="button" name="round button" value="確定" id="confirm" 
+        onClick="calc(this.form)">
         
       </form>
-      
+    
+    <!-- <span><b><span style="background-color:#d5dce4;">換算後的單場PT數為<span id="output4"></span></b></span></span>   -->
+    
     <br>
-    <span>您只需再打<span id="output1"></span>場，就可追到目標分數</span>
+    <span><b><span style="background-color:#d5dce4;">您只需再打<span id="output1"></span>場，就可追到目標分數</span></b></span></span>
     <br>
-    <span>共需花費<span id="output2"></span>體，以及<span id="output3"></span>分鐘</span>
+    <span><b><span style="background-color:#d5dce4;">共需花費<span id="output2"></span>體（=<span id="output6"></span>石），以及<span id="output3"></span>分鐘</span></b></span></span>
 
     <script>
         // function min_to_hour(form){
@@ -176,15 +214,14 @@
             const livebonus = form.livebonus.value;
             const goal = form.goal.value;
             const current = form.current.value;
+            const othertime = form.othertime.value;
+            console.log(othertime);
+            console.log(othertime == "");
 
             var distance = goal - current;
             var game_count = distance / each;
 
             var z = 0
-
-        // function check() {
-        //     document.getElementById("red").checked = true;
-        // }
 
             if (document.getElementsByName("song")[0].checked == true){
                 z = 2
@@ -192,12 +229,19 @@
             if (document.getElementsByName("song")[1].checked == true){
                 z = 2.7
             }
+            if (othertime != ""){
+                z = othertime
+            }
 
             var time = game_count * z;
             var boost_count = game_count * livebonus;
+            var stone = boost_count / 5 * 50;
 
             document.getElementById('output1').innerHTML = game_count;
             document.getElementById('output2').innerHTML = boost_count;
+            document.getElementById('output6').innerHTML = stone;
+
+            // 條件?條件成立的值:條件不成立的值
             document.getElementById('output3').innerHTML = (time < 60)?(time):(Math.floor(time / 60) + "小時" + time % 60);
 
         }
