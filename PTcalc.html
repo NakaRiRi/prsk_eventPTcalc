@@ -16,12 +16,12 @@
     <ul type="disc">
         <p><li>歡迎各位豆腐使用本計算機作為初估是否要追上去的參考</li></p>
         <p><li>打排有風險，請謹慎考慮自身時間、精力與鈔能力</li></p>
-        <p><li>體力數輸入範圍皆為「1～10」</li>
+        <p><li>可以搭配我之前寫的<a href="https://hackmd.io/@NakaRiRi/prsktwitterroom">推特車攻略</a>一起參考</li>
         <p><li>若有任何疑問請洽<a href="https://www.plurk.com/yumisky0226">阿千</a></li></p>
         <p><li>大力感謝<a href="https://www.plurk.com/Ado_wao">肉魚</a>以及<a href="https://www.plurk.com/geniusrobot6174">小龜</a>支援各種技術疑難雜症QQ</li>
     </ul>
 
-    <hr size="5px" align="left" width="50%" color="#ff72b8">
+    <hr size="5px" align="left" width="60%" color="#ff72b8">
 
     <H3 align="left"><span style="background-color:#00ffdd;">不同體力數的單場PT換算</span></H3>
     
@@ -37,10 +37,64 @@
         <input type="text" id="each1" name="each1"><br>
 
         <label for="curlivebo"><b>已知消費的體力數（X）：</b></label><br>
-        <input type="range" id="curlivebo" name="curlivebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo1').innerHTML=this.value"><span id="showlivebo1">3</span><br>
-        
+        <div class="range-slider">
+            <div class="border front" id="curlivebo-1"></div>
+            <input type="range" id="curlivebo" name="curlivebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo1').innerHTML=this.value"><span id="showlivebo1">3</span><br>
+            <div class="border back"></div>
+        </div>
+        <style>
+            #showlivebo1 {
+                padding-left: 20px
+            }
+        </style>
+
+        <script>
+
+            var curlivebo_count = document.querySelector('#curlivebo');
+            var tale = document.querySelector('div#curlivebo-1');
+
+            curlivebo_count.addEventListener('input', function() {
+                if(this.value > 5){
+                    curlivebo_count.style.setProperty('--color', '#ff55aa');
+                    tale.style.setProperty('--color', '#ff55aa'); 
+                }
+                else if(this.value <=5){
+                    curlivebo_count.style.setProperty('--color', '#00d4c5');
+                    tale.style.setProperty('--color', '#00d4c5');
+                }               
+            }, false);
+
+        </script>
+
         <label for="livebo"><b>換算成消費多少體力（Y）：</b></label><br>
-        <input type="range" id="livebo" name="livebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo2').innerHTML=this.value"><span id="showlivebo2">3</span><br>
+        <div class="range-slider">
+            <div class="border front" id="livebo-2"></div>
+            <input type="range" id="livebo" name="livebo" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo2').innerHTML=this.value"><span id="showlivebo2">3</span><br>
+            <div class="border back"></div>
+        </div>
+        <style>
+            #showlivebo2 {
+                padding-left: 20px
+            }
+        </style>
+
+        <script>
+
+            var livebo_count = document.querySelector('#livebo');
+            var tale1 = document.querySelector('div#livebo-2');
+
+            livebo_count.addEventListener('input', function() {
+                if(this.value > 5){
+                    livebo_count.style.setProperty('--color', '#ff55aa');
+                    tale1.style.setProperty('--color', '#ff55aa'); 
+                }
+                else if(this.value <=5){
+                    livebo_count.style.setProperty('--color', '#00d4c5');
+                    tale1.style.setProperty('--color', '#00d4c5');
+                }               
+            }, false);
+
+        </script>
 
         <style>
             #confirm2 {background-color: #fff795 ; min-height: 4px; min-width: 14px; padding: 5px; border-radius: 100px; cursor: pointer; font-size:15px; font-weight: bold;}
@@ -66,9 +120,9 @@
 
     <script>
         function change(form) {
-            const each1 = form.each1.value;
-            const curlivebo = form.curlivebo.value;
-            const livebo = form.livebo.value;
+            const each1 = document.getElementById("each1").value;
+            const curlivebo = document.getElementById("curlivebo").value;
+            const livebo = document.getElementById("livebo").value;
 
             var x = 0;
             var y = 0;
@@ -146,13 +200,15 @@
     </script>
 
 
-    <hr size="5px" align="left" width="50%" color="#ff72b8">
+    <hr size="5px" align="left" width="60%" color="#ff72b8">
 
-    <H3 align="left"><span style="background-color:#00ffdd;">追分估計</span></H3>
+    <H3 align="left"><span style="background-color:#00ffdd;">追分估計：目標PT數→花費資源</span></H3>
 
     <ul type="disc">
         <p><li>將上面換算好的PT數填入第一個空格</li></p>
-        <p><li>可利用算出的體力數與時長評估自己是否要追分/每場花更多體/換曲</li></p>
+        <p><li>可利用算出的體力數與時長評估自己是否要追分/每場花更多體/換曲/<del>追加課金</del></li></p>
+        <p><li>選曲時長計算為大家網路都順暢、非5v5期間的協力房從這首封面圖出現～下首封面圖出現</li></p>
+        <p><li>若已知PT數差距，可於目標PT數輸入0、目標PT數輸入分差<br>（如：我想知道打1萬分需要幾場，則輸入0、10000）</li>
         <p><li>祝打排順利(≧∀≦)ゞ</li></p>
     </ul>
 
@@ -160,21 +216,112 @@
         <label for="each"><b>單場PT：</b></label><br>
         <input type="text" id="each" name="each"><br>
         
-        <label for="livebonus"><b>輸入單場PT的那場消費多少體力：</b></label><br>
-        <input type="range" id="livebonus" name="livebonus" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo').innerHTML=this.value"><span id="showlivebo">3</span><br>
+        <!-- <label for="livebonus"><b>輸入單場PT的那場消費多少體力：</b></label><br>
+        <input type="range" id="livebonus" name="livebonus" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo').innerHTML=this.value"><span id="showlivebo">3</span><br> -->
         
-        <label for="current"><b>目前分數：</b></label><br>
+        <label for="livebonus"><b>輸入單場PT的那場消費多少體力：</b></label><br>
+        <div class="range-slider">
+            <div class="border front" id="livebonus_3"></div>
+            <input type="range" id="livebonus" name="livebonus" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo3').innerHTML=this.value"><span id="showlivebo3">3</span><br>
+            <div class="border back"></div>
+        </div>
+
+        <script>
+
+            var livebonus_count6 = document.querySelector('#livebonus');
+            var tale2 = document.querySelector('div#livebonus_3');
+
+            livebonus_count6.addEventListener('input', function() {
+                if(this.value > 5){
+                    livebonus_count6.style.setProperty('--color', '#ff55aa');
+                    tale2.style.setProperty('--color', '#ff55aa'); 
+                }
+                else if(this.value <=5){
+                    livebonus_count6.style.setProperty('--color', '#00d4c5');
+                    tale2.style.setProperty('--color', '#00d4c5');
+                }               
+            }, false);
+
+        </script>
+
+        <style>
+
+            #showlivebo3 {
+                padding-left: 20px
+            }
+            .range-slider{
+                display: flex;
+                align-items: center;
+                --color: #00d4c5;          
+            }
+
+            input[type=range] {
+                rgin: auto;
+                -webkit-appearance: none;
+                z-index: 3;
+                outline: none;
+                overflow: hidden;
+                height: 50px;
+                width: 200px;
+                cursor: pointer;
+                background:none;
+                margin-left: 5px;
+            }
+
+            div.border {
+                width: 10px;
+                height: 20px;
+                position: relative;
+                border-radius: 25px;
+            }
+
+            div.front{
+                position: absolute;
+                border-radius: 9px;
+                background-color: var(--color);
+                
+            }
+
+            div.back {
+                position: absolute;
+                margin-left: 199px;
+                border-radius: 9px;
+                background-color: #4e4e73;
+            }
+
+            input[type=range]::-webkit-slider-runnable-track {
+                background: #4e4e73;
+                height: 20px;
+            }
+            
+            input[type=range]::-webkit-slider-thumb {
+                margin-top: -10px;
+                -webkit-appearance: none;
+                width: 25px;
+                height: 40px;
+                background: linear-gradient(white, 80%, lightgray);
+                box-shadow: -5px 0 0 -10px var(--color), -6px 0 0 -10px var(--color), -7px 0 0 -10px var(--color), -8px 0 0 -10px var(--color), -9px 0 0 -10px var(--color), -10px 0 0 -10px var(--color), -11px 0 0 -10px var(--color), -12px 0 0 -10px var(--color), -13px 0 0 -10px var(--color), -14px 0 0 -10px var(--color), -15px 0 0 -10px var(--color), -16px 0 0 -10px var(--color), -17px 0 0 -10px var(--color), -18px 0 0 -10px var(--color), -19px 0 0 -10px var(--color), -20px 0 0 -10px var(--color), -21px 0 0 -10px var(--color), -22px 0 0 -10px var(--color), -23px 0 0 -10px var(--color), -24px 0 0 -10px var(--color), -25px 0 0 -10px var(--color), -26px 0 0 -10px var(--color), -27px 0 0 -10px var(--color), -28px 0 0 -10px var(--color), -29px 0 0 -10px var(--color), -30px 0 0 -10px var(--color), -31px 0 0 -10px var(--color), -32px 0 0 -10px var(--color), -33px 0 0 -10px var(--color), -34px 0 0 -10px var(--color), -35px 0 0 -10px var(--color), -36px 0 0 -10px var(--color), -37px 0 0 -10px var(--color), -38px 0 0 -10px var(--color), -39px 0 0 -10px var(--color), -40px 0 0 -10px var(--color), -41px 0 0 -10px var(--color), -42px 0 0 -10px var(--color), -43px 0 0 -10px var(--color), -44px 0 0 -10px var(--color), -45px 0 0 -10px var(--color), -46px 0 0 -10px var(--color), -47px 0 0 -10px var(--color), -48px 0 0 -10px var(--color), -49px 0 0 -10px var(--color), -50px 0 0 -10px var(--color), -51px 0 0 -10px var(--color), -52px 0 0 -10px var(--color), -53px 0 0 -10px var(--color), -54px 0 0 -10px var(--color), -55px 0 0 -10px var(--color), -56px 0 0 -10px var(--color), -57px 0 0 -10px var(--color), -58px 0 0 -10px var(--color), -59px 0 0 -10px var(--color), -60px 0 0 -10px var(--color), -61px 0 0 -10px var(--color), -62px 0 0 -10px var(--color), -63px 0 0 -10px var(--color), -64px 0 0 -10px var(--color), -65px 0 0 -10px var(--color), -66px 0 0 -10px var(--color), -67px 0 0 -10px var(--color), -68px 0 0 -10px var(--color), -69px 0 0 -10px var(--color), -70px 0 0 -10px var(--color), -71px 0 0 -10px var(--color), -72px 0 0 -10px var(--color), -73px 0 0 -10px var(--color), -74px 0 0 -10px var(--color), -75px 0 0 -10px var(--color), -76px 0 0 -10px var(--color), -77px 0 0 -10px var(--color), -78px 0 0 -10px var(--color), -79px 0 0 -10px var(--color), -80px 0 0 -10px var(--color), -81px 0 0 -10px var(--color), -82px 0 0 -10px var(--color), -83px 0 0 -10px var(--color), -84px 0 0 -10px var(--color), -85px 0 0 -10px var(--color), -86px 0 0 -10px var(--color), -87px 0 0 -10px var(--color), -88px 0 0 -10px var(--color), -89px 0 0 -10px var(--color), -90px 0 0 -10px var(--color), -91px 0 0 -10px var(--color), -92px 0 0 -10px var(--color), -93px 0 0 -10px var(--color), -94px 0 0 -10px var(--color), -95px 0 0 -10px var(--color), -96px 0 0 -10px var(--color), -97px 0 0 -10px var(--color), -98px 0 0 -10px var(--color), -99px 0 0 -10px var(--color), -100px 0 0 -10px var(--color), -101px 0 0 -10px var(--color), -102px 0 0 -10px var(--color), -103px 0 0 -10px var(--color), -104px 0 0 -10px var(--color), -105px 0 0 -10px var(--color), -106px 0 0 -10px var(--color), -107px 0 0 -10px var(--color), -108px 0 0 -10px var(--color), -109px 0 0 -10px var(--color), -110px 0 0 -10px var(--color), -111px 0 0 -10px var(--color), -112px 0 0 -10px var(--color), -113px 0 0 -10px var(--color), -114px 0 0 -10px var(--color), -115px 0 0 -10px var(--color), -116px 0 0 -10px var(--color), -117px 0 0 -10px var(--color), -118px 0 0 -10px var(--color), -119px 0 0 -10px var(--color), -120px 0 0 -10px var(--color), -121px 0 0 -10px var(--color), -122px 0 0 -10px var(--color), -123px 0 0 -10px var(--color), -124px 0 0 -10px var(--color), -125px 0 0 -10px var(--color), -126px 0 0 -10px var(--color), -127px 0 0 -10px var(--color), -128px 0 0 -10px var(--color), -129px 0 0 -10px var(--color), -130px 0 0 -10px var(--color), -131px 0 0 -10px var(--color), -132px 0 0 -10px var(--color), -133px 0 0 -10px var(--color), -134px 0 0 -10px var(--color), -135px 0 0 -10px var(--color), -136px 0 0 -10px var(--color), -137px 0 0 -10px var(--color), -138px 0 0 -10px var(--color), -139px 0 0 -10px var(--color), -140px 0 0 -10px var(--color), -141px 0 0 -10px var(--color), -142px 0 0 -10px var(--color), -143px 0 0 -10px var(--color), -144px 0 0 -10px var(--color), -145px 0 0 -10px var(--color), -146px 0 0 -10px var(--color), -147px 0 0 -10px var(--color), -148px 0 0 -10px var(--color), -149px 0 0 -10px var(--color), -150px 0 0 -10px var(--color), -151px 0 0 -10px var(--color), -152px 0 0 -10px var(--color), -153px 0 0 -10px var(--color), -154px 0 0 -10px var(--color), -155px 0 0 -10px var(--color), -156px 0 0 -10px var(--color), -157px 0 0 -10px var(--color), -158px 0 0 -10px var(--color), -159px 0 0 -10px var(--color), -160px 0 0 -10px var(--color), -161px 0 0 -10px var(--color), -162px 0 0 -10px var(--color), -163px 0 0 -10px var(--color), -164px 0 0 -10px var(--color), -165px 0 0 -10px var(--color), -166px 0 0 -10px var(--color), -167px 0 0 -10px var(--color), -168px 0 0 -10px var(--color), -169px 0 0 -10px var(--color), -170px 0 0 -10px var(--color), -171px 0 0 -10px var(--color), -172px 0 0 -10px var(--color), -173px 0 0 -10px var(--color), -174px 0 0 -10px var(--color), -175px 0 0 -10px var(--color), -176px 0 0 -10px var(--color), -177px 0 0 -10px var(--color), -178px 0 0 -10px var(--color), -179px 0 0 -10px var(--color), -180px 0 0 -10px var(--color), -181px 0 0 -10px var(--color), -182px 0 0 -10px var(--color), -183px 0 0 -10px var(--color), -184px 0 0 -10px var(--color), -185px 0 0 -10px var(--color), -186px 0 0 -10px var(--color), -187px 0 0 -10px var(--color), -188px 0 0 -10px var(--color), -189px 0 0 -10px var(--color), -190px 0 0 -10px var(--color), -191px 0 0 -10px var(--color), -192px 0 0 -10px var(--color), -193px 0 0 -10px var(--color), -194px 0 0 -10px var(--color), -195px 0 0 -10px var(--color), -196px 0 0 -10px var(--color), -197px 0 0 -10px var(--color), -198px 0 0 -10px var(--color), -199px 0 0 -10px var(--color), -200px 0 0 -10px var(--color);
+                border: 3px solid #333;
+                /* border-bottom: 5px solid #333; */
+                border-radius: 6px;
+                outline: 2px solid lightgray;
+                outline-offset: -3.5px;
+            }
+
+        </style>
+
+        <label for="current"><b>目前PT數：</b></label><br>
         <input type="text" id="current" name="current"><br>
         
-        <label for="goal"><b>目標分數：</b></label><br>
+        <label for="goal"><b>目標PT數：</b></label><br>
         <input type="text" id="goal" name="goal"><br>
 
         <b>選曲以計算所需時長：</b><br>
 
         <div id="radio">
-            <label><input type="radio" name="song" value="ebi"><span class="round button">蝦/捉迷藏/えび</span></label>
-            <label><input type="radio" name="song" value="face"><span class="round button">大臉/ロスエン</span></label>       
-            <label><input type="radio" name="song" value="others"><span class="round button">其他</span></label>
+            <label><input type="radio" name="song" value="ebi"><span class="round button"><center>【蝦/捉迷藏/えび】<br>約2分3秒</center></span></label>
+            <label><input type="radio" name="song" value="face"><span class="round button"><center>【大臉/ロスエン】<br>約3分23秒</center></span></label>       
+            <label><input type="radio" name="song" value="others"><span class="round button"><center>【其他】<br>可於下方輸入</center></span></label>
         </div>
         
         <style>
@@ -199,7 +346,7 @@
     <!-- <span><b><span style="background-color:#d5dce4;">換算後的單場PT數為<span id="output4"></span></b></span></span>   -->
     
     <br>
-    <span><b><span style="background-color:#d5dce4;">您只需再打<span id="output1"></span>場，就可追到目標分數</span></b></span></span>
+    <span><b><span style="background-color:#d5dce4;">您只需再打<span id="output1"></span>場，就可追到目標PT數</span></b></span></span>
     <br>
     <span><b><span style="background-color:#d5dce4;">共需花費<span id="output2"></span>體（=<span id="output6"></span>石），以及<span id="output3"></span>分鐘</span></b></span></span>
 
@@ -210,11 +357,11 @@
         // }
 
         function calc(form) {
-            const each = form.each.value;
-            const livebonus = form.livebonus.value;
-            const goal = form.goal.value;
-            const current = form.current.value;
-            const othertime = form.othertime.value;
+            const each = document.getElementById("each").value;
+            const livebonus = document.getElementById("livebonus").value;
+            const goal = document.getElementById("goal").value;
+            const current = document.getElementById("current").value;
+            const othertime = document.getElementById("othertime").value;
             console.log(othertime);
             console.log(othertime == "");
 
@@ -224,10 +371,10 @@
             var z = 0
 
             if (document.getElementsByName("song")[0].checked == true){
-                z = 2
+                z = 2.05
             }
             if (document.getElementsByName("song")[1].checked == true){
-                z = 2.7
+                z = 3.38
             }
             if (othertime != ""){
                 z = othertime
@@ -248,7 +395,126 @@
        // calc();
     </script>
 
-    
+    <hr size="5px" align="left" width="60%" color="#ff72b8">
+
+    <H3 align="left"><span style="background-color:#00ffdd;">追分估計：花費資源→目標PT數</span></H3>
+
+    <ul type="disc">
+        <p><li>此區塊的計算邏輯與上面剛好顛倒，<br>已知手頭上擁有的資源數量，來換算出全砸可以得到多少PT數</li></p>
+        <p><li>可利用算出PT數與時長評估自己是否要追分/換目標/換曲/<del>追加課金</del></li></p>
+        <p><li>選曲時長計算為大家網路都順暢、非5v5期間的協力房從這首封面圖出現～下首封面圖出現</li></p>
+        <!-- <p><li>若已知PT數差距，可於目標PT數輸入0、目標PT數輸入分差<br>（如：我想知道打1萬分需要幾場，則輸入0、10000）</li> -->
+        <p><li>祝打排順利(≧∀≦)ゞ</li></p>
+    </ul>
+
+    <form method="GET">
+        <label for="each_1"><b>單場PT：</b></label><br>
+        <input type="text" id="each_1" name="each_1"><br>
+
+        <label for="stone_count_3"><b>欲花費的石頭數：</b></label><br>
+        <input type="text" id="stone_count_3" name="stone_count_3"><br>
+
+        <label for="big_count_3"><b>欲花費的大罐數：</b></label><br>
+        <input type="text" id="big_count_3" name="big_count_3"><br>
+
+        <label for="small_count_3"><b>欲花費的小罐數：</b></label><br>
+        <input type="text" id="small_count_3" name="small_count_3"><br>
+
+        <label for="livebonus_4"><b>每場消費多少體力：</b></label><br>
+        <div class="range-slider">
+            <div class="border front" id="livebonus_5"></div>
+            <input type="range" id="livebonus_4" name="livebonus_4" min="1" max="10" step="1" value="3" onchange="document.getElementById('showlivebo5').innerHTML=this.value"><span id="showlivebo5">3</span><br>
+            <div class="border back"></div>
+        </div>
+
+        <style>
+            #showlivebo5 {
+                padding-left: 20px
+            }
+        </style>
+        
+        <script>
+
+            var livebonus_count7 = document.querySelector('#livebonus_4');
+            var tale4 = document.querySelector('div#livebonus_5');
+
+            livebonus_count7.addEventListener('input', function() {
+                if(this.value > 5){
+                    livebonus_count7.style.setProperty('--color', '#ff55aa');
+                    tale4.style.setProperty('--color', '#ff55aa'); 
+                }
+                else if(this.value <=5){
+                    livebonus_count7.style.setProperty('--color', '#00d4c5');
+                    tale4.style.setProperty('--color', '#00d4c5');
+                }               
+            }, false);
+
+        </script>
+
+        <b>選曲以計算所需時長：</b><br>
+
+        <div id="radio">
+            <label><input type="radio" name="song1" value="ebi1"><span class="round button"><center>【蝦/捉迷藏/えび】<br>約2分3秒</center></span></label>
+            <label><input type="radio" name="song1" value="face1"><span class="round button"><center>【大臉/ロスエン】<br>約3分23秒</center></span></label>       
+            <label><input type="radio" name="song1" value="others1"><span class="round button"><center>【其他】<br>可於下方輸入</center></span></label>
+        </div>
+
+        <label for="othertime1"><b>或自行輸入時長（分鐘為單位）：</b></label><br>
+        <input type="text" id="othertime1" name="othertime1"><br>        
+
+        <br>
+        <input type="button" name="round button" value="確定" id="confirm" 
+        onClick="calc2(this.form)">
+
+    </form>
+
+    <br>
+    <span><b><span style="background-color:#d5dce4;">您可取得<span id="output7"></span>PT</span></b></span></span>
+    <br>
+    <span><b><span style="background-color:#d5dce4;">共需打<span id="output8"></span>場，以及<span id="output9"></span>分鐘</span></b></span></span>
+
+    <script>
+
+        function calc2(form) {
+            const each_1 = document.getElementById("each_1").value;
+            const stone_count_3 = document.getElementById("stone_count_3").value;
+            const big_count_3 = document.getElementById("big_count_3").value;
+            const small_count_3 = document.getElementById("small_count_3").value;
+            const livebonus_4 = document.getElementById("livebonus_4").value;
+            const othertime1 = document.getElementById("othertime1").value;
+            console.log(othertime1);
+            console.log(othertime1 == "");
+
+            var total_livebo = stone_count_3 / 10 + big_count_3 * 10 + small_count_3 * 1;
+            var game_count_2 = total_livebo / livebonus_4;
+            var totalPT = each_1 * game_count_2;
+
+            var p = 0;
+
+            if (document.getElementsByName("song1")[0].checked == true){
+                p = 2.05;
+            }
+            if (document.getElementsByName("song1")[1].checked == true){
+                p = 3.38;
+            }
+            if (othertime1 != ""){
+                p = othertime1;
+            }
+
+            var time1 = game_count_2 * p;
+
+            document.getElementById('output7').innerHTML = totalPT;
+            // console.log(totalPT);
+            document.getElementById('output8').innerHTML = game_count_2;
+            // console.log(game_count_2);
+            document.getElementById('output9').innerHTML = (time1 < 60)?(time1):(Math.floor(time1 / 60) + "小時" + time1 % 60);
+            // console.log(time1);
+        }
+
+        // calc2();
+
+    </script>
+
 </body>
 
 
