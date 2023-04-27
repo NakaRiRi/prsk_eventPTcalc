@@ -13,75 +13,22 @@
         body {
             margin: 0px 0px 0px 20px;
         }
-    </style>
-    
-    <H2 align="left">「到底追不追得上！？」プロセカ活動PT計算機</H2>
 
-    <!-- span：讓背景色只顯示文字長度 -->
-    <!-- <H3 align="left"><span style="background-color:#00ffdd;">使用說明</span></H3> -->
-
-    <style>
-        a.button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
-        a.button:hover {background: #000; color: #000; }
-        a.round {border-radius: 100px; }
-        a.button{
-                padding: 10px 20px 10px 20px;
-            }
-    </style>
-    
-    <br>
-    <a class="round button">單場換算</a>
-    <input type="button" class="round button" value="目標PT數→花費資源" id="second" href="">
-    <input type="button" class="round button" value="花費資源→目標PT數" id="third" href="">
-    <br> 
-
-    <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                使用說明
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-
-                <ul type="disc">
-                    <p><li>歡迎各位豆腐使用本計算機作為初估是否要追上去的參考</li></p>
-                    <p><li>打排有風險，請謹慎考慮自身時間、精力與鈔能力</li></p>
-                    <p><li>可以搭配我之前寫的<a href="https://hackmd.io/@NakaRiRi/prsktwitterroom">推特車攻略</a>一起參考</li>
-                    <p><li>本計算機不會收集任何使用者資料，我的coding技術超爛也寫不出什麼後台資料庫，請放心使用XD
-                    <p><li>若有任何疑問請洽<a href="https://www.plurk.com/yumisky0226">噗浪</a>或丟<a href="https://peing.net/zh-TW/ff2063c8cef631">匿名箱</a>給我</li></p>
-                    <p><li>大力感謝<a href="https://www.plurk.com/Ado_wao">肉魚</a>以及<a href="https://www.plurk.com/geniusrobot6174">小龜</a>支援各種技術疑難雜症QQ</li>
-                </ul>
-            </div>
-          </div>
-        </div>       
-      </div>
-      <div class="line"></div>
-      <style>
-        div.line{
-            width: 500px;
-            height: 10px;
-            background-color: #ff72b8;
-            margin: 20px auto 20px auto;
-        }
-
-        .accordion-button{
-            background-color: #00ffdd !important;
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
         }
 
         a{
             text-decoration: none;
             position: relative;
             color: #ff72b8;
+            z-index: 999;
         }
 
-        a:hover::before{
-            bottom: 0;
-            height: 100%;
-        }
-
-        a::before{
+        a:not([class*="button"])::before{
             content: '';
             background-color: #B5EAEA;
             position: absolute;
@@ -94,18 +41,73 @@
         }
 
         a:hover{
-            background-color: #444467;
-            color: #ffffff;
             height: 100%;
         }
 
-      </style>
-    
-    
-      <!-- <hr size="5px" align="left" width="60%" color="#ff72b8"> -->
+        a:hover::before{
+            bottom: 0;
+            height: 100%;
+        }
 
-    <H3 align="left"><span style="background-color:#00ffdd;">不同體力數的單場PT換算</span></H3>
+        a.button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+        a.button:hover {background: #bbb; color: #fff; }
+        a.round {border-radius: 100px; }
+        a.button{
+            padding: 10px 20px 10px 20px;
+        }
+
+    </style>
     
+    <H2 align="left">「到底追不追得上！？」プロセカ活動PT計算機</H2>
+
+    <!-- span：讓背景色只顯示文字長度 -->
+    <!-- <H3 align="left"><span style="background-color:#00ffdd;">使用說明</span></H3> -->
+
+    <br>
+        <a class="round button" href="#single">單場換算</a>
+        <a class="round button" href="#pt2res">目標PT數→花費資源</a>
+        <a class="round button" href="#res2pt">花費資源→目標PT數</a>
+    <br>
+
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    使用說明
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <ul type="disc">
+                        <p><li>歡迎各位豆腐使用本計算機作為初估是否要追上去的參考</li></p>
+                        <p><li>打排有風險，請謹慎考慮自身時間、精力與鈔能力</li></p>
+                        <p><li>可以搭配我之前寫的<a href="https://hackmd.io/@NakaRiRi/prsktwitterroom">推特車攻略</a>一起參考</li></p>
+                        <p><li>本計算機不會收集任何使用者資料，我的coding技術超爛也寫不出什麼後台資料庫，請放心使用XD</li></p>
+                        <p><li>若有任何疑問請洽<a href="https://www.plurk.com/yumisky0226">噗浪</a>或丟<a href="https://peing.net/zh-TW/ff2063c8cef631">匿名箱</a>給我</li></p>
+                        <p><li>大力感謝<a href="https://www.plurk.com/Ado_wao">肉魚</a>以及<a href="https://www.plurk.com/geniusrobot6174">小龜</a>支援各種技術疑難雜症QQ</li></p>
+                    </ul>
+                </div>
+            </div>
+        </div>       
+    </div>
+    <div class="line"></div>
+    <style>
+        div.line{
+            width: 500px;
+            height: 10px;
+            background-color: #ff72b8;
+            margin: 20px auto 20px auto;
+        }
+
+        .accordion-button{
+            background-color: #00ffdd !important;
+        }
+    </style>
+
+    <!-- <hr size="5px" align="left" width="60%" color="#ff72b8"> -->
+    <a name="single"></a>
+    <H3 align="left"><span style="background-color:#00ffdd;">不同體力數的單場PT換算</span></H3>
+
     <ul type="disc">
         <p><li>若已知PT數使用的體力數與下面欲計算的體力數不同，則可使用此換算先行計算</li></p>
         <p><li>例如：我知道我花3（X）體打出的PT數，但我接下來想開5（Y）體跑</li></p>
@@ -186,8 +188,7 @@
         </style>
 
         <br>
-        <input type="button" name="round button" value="換算" id="confirm2"
-        onClick="change(this.form)">       
+        <input type="button" name="round button" value="換算" id="confirm2" onClick="change(this.form)">       
 
     </form>
 
@@ -203,7 +204,6 @@
     <style>
         #output4{
             font-size: 40px;
-
         }
     </style>
 
@@ -212,85 +212,24 @@
             const each1 = document.getElementById("each1").value;
             const curlivebo = document.getElementById("curlivebo").value;
             const livebo = document.getElementById("livebo").value;
+            const curliveboToX = [null, 5, 10, 15, 19, 23, 26, 29, 31, 33, 35];
+            const liveboToY = [null, 5, 10, 15, 19, 23, 26, 29, 31, 33, 35];
 
-            var x = 0;
-            var y = 0;
+            var x = (curlivebo >= 1 && curlivebo <= 10)?(curliveboToX[curlivebo]):(0);
+            var y = (livebo >= 1 && livebo <= 10)?(liveboToY[livebo]):(0);
 
-            if (curlivebo == 1){
-                x = 5
-            }
-            if (curlivebo == 2){
-                x = 10
-            }
-            if (curlivebo == 3){
-                x = 15
-            }
-            if (curlivebo == 4){
-                x = 19
-            }
-            if (curlivebo == 5){
-                x = 23
-            }
-            if (curlivebo == 6){
-                x = 26
-            }
-            if (curlivebo == 7){
-                x = 29
-            }
-            if (curlivebo == 8){
-                x = 31
-            }
-            if (curlivebo == 9){
-                x = 33
-            }
-            if (curlivebo == 10){
-                x = 35
-            }
-
-// 分隔，以上為目前體力，以下為預計體力
-
-            if (livebo == 1){
-                y = 5
-            }
-            if (livebo == 2){
-                y = 10
-            }
-            if (livebo == 3){
-                y = 15
-            }
-            if (livebo == 4){
-                y = 19
-            }
-            if (livebo == 5){
-                y = 23
-            }
-            if (livebo == 6){
-                y = 26
-            }
-            if (livebo == 7){
-                y = 29
-            }
-            if (livebo == 8){
-                y = 31
-            }
-            if (livebo == 9){
-                y = 33
-            }
-            if (livebo == 10){
-                y = 35
-            }
-
+            // 分隔，以上為目前體力，以下為預計體力
             var changept = each1 * y / x;
 
             document.getElementById('output4').innerHTML = changept;
 
         }
-       // change();
     </script>
 
 
     <hr size="5px" align="left" width="60%" color="#ff72b8">
 
+    <a name="pt2res"></a>
     <H3 align="left"><span style="background-color:#00ffdd;">追分估計：目標PT數→花費資源</span></H3>
 
     <ul type="disc">
@@ -401,7 +340,7 @@
 
         <label for="current"><b>目前PT數：</b></label><br>
         <input type="text" id="current" name="current"><br>
-        
+
         <label for="goal"><b>目標PT數：</b></label><br>
         <input type="text" id="goal" name="goal"><br>
 
@@ -414,17 +353,17 @@
         </div>
         
         <style>
-        #radio input[type="radio"] {display: none; }
-        #radio input:checked + .button {background: #444467; color: #fff; cursor: default; }
-        #radio .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
-        #radio .button:hover {background: #bbb; color: #fff; }
-        #radio .round {border-radius: 100px; }
-        #radio .button{
+            #radio input[type="radio"] {display: none; }
+            #radio input:checked + .button {background: #444467; color: #fff; cursor: default; }
+            #radio .button {display: inline-block; margin: 0 5px 10px 0; padding: 5px 10px; background: #f7f7f7; color: #333; cursor: pointer; }
+            #radio .button:hover {background: #bbb; color: #fff; }
+            #radio .round {border-radius: 100px; }
+            #radio .button {
                 padding: 10px 20px 10px 20px;
             }
-        #confirm {background-color: #fff795 ; min-height: 4px; min-width: 14px; padding: 5px; border-radius: 100px; cursor: pointer; font-size:15px; font-weight: bold;}
-        #confirm:hover {background-color: #444467; color: #fff; }
-        #confirm {
+            #confirm {background-color: #fff795 ; min-height: 4px; min-width: 14px; padding: 5px; border-radius: 100px; cursor: pointer; font-size:15px; font-weight: bold;}
+            #confirm:hover {background-color: #444467; color: #fff; }
+            #confirm {
                 padding: 10px 20px 10px 20px;
             }
         </style>
@@ -433,10 +372,9 @@
         <input type="text" id="othertime" name="othertime"><br>        
 
         <br>
-        <input type="button" name="round button" value="確定" id="confirm" 
-        onClick="calc(this.form)">
+        <input type="button" name="round button" value="確定" id="confirm" onClick="calc(this.form)">
         
-      </form>
+    </form>
     
     <!-- <span><b><span style="background-color:#d5dce4;">換算後的單場PT數為<span id="output4"></span></b></span></span>   -->
     
@@ -446,10 +384,6 @@
     <span><b><span style="background-color:#d5dce4;">共需花費<span id="output2"></span>體（=<span id="output6"></span>石），以及<span id="output3"></span>分鐘</span></b></span></span>
 
     <script>
-        // function min_to_hour(form){
-        //     const 
-
-        // }
 
         function calc(form) {
             const each = document.getElementById("each").value;
@@ -457,8 +391,6 @@
             const goal = document.getElementById("goal").value;
             const current = document.getElementById("current").value;
             const othertime = document.getElementById("othertime").value;
-            console.log(othertime);
-            console.log(othertime == "");
 
             var distance = goal - current;
             var game_count = distance / each;
@@ -487,11 +419,11 @@
             document.getElementById('output3').innerHTML = (time < 60)?(time):(Math.floor(time / 60) + "小時" + time % 60);
 
         }
-       // calc();
     </script>
 
     <hr size="5px" align="left" width="60%" color="#ff72b8">
 
+    <a name="res2pt"></a>
     <H3 align="left"><span style="background-color:#00ffdd;">追分估計：花費資源→目標PT數</span></H3>
 
     <ul type="disc">
@@ -558,8 +490,7 @@
         <input type="text" id="othertime1" name="othertime1"><br>        
 
         <br>
-        <input type="button" name="round button" value="確定" id="confirm" 
-        onClick="calc2(this.form)">
+        <input type="button" name="round button" value="確定" id="confirm" onClick="calc2(this.form)">
 
     </form>
 
@@ -577,8 +508,6 @@
             const small_count_3 = document.getElementById("small_count_3").value;
             const livebonus_4 = document.getElementById("livebonus_4").value;
             const othertime1 = document.getElementById("othertime1").value;
-            console.log(othertime1);
-            console.log(othertime1 == "");
 
             var total_livebo = stone_count_3 / 10 + big_count_3 * 10 + small_count_3 * 1;
             var game_count_2 = total_livebo / livebonus_4;
@@ -599,19 +528,42 @@
             var time1 = game_count_2 * p;
 
             document.getElementById('output7').innerHTML = totalPT;
-            // console.log(totalPT);
             document.getElementById('output8').innerHTML = game_count_2;
-            // console.log(game_count_2);
             document.getElementById('output9').innerHTML = (time1 < 60)?(time1):(Math.floor(time1 / 60) + "小時" + time1 % 60);
-            // console.log(time1);
         }
 
-        // calc2();
+    </script>
 
+    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+        <span>↑</span>
+    </button>
+
+    <script>
+        //Get the button
+        let mybutton = document.getElementById("btn-back-to-top");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if ( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        mybutton.addEventListener("click", backToTop);
+
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-
 
 </html>
